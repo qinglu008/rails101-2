@@ -9,7 +9,6 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @posts = @group.posts.latest.paginate(:page => params[:page], :per_page => 5)
-    logger.debug("---- #{@group.posts.latest.inspect}")
   end
 
   def edit
@@ -24,7 +23,6 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     @group.user = current_user
-    logger.info("current_user => #{current_user.inspect}")
     if @group.save
       redirect_to groups_path
     else
