@@ -7,6 +7,6 @@ Rails.application.routes.draw do
       post :quit
     end
     resources :posts
-  end
+  end 
   root 'groups#index'
 end
