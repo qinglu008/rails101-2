@@ -8,7 +8,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @posts = @group.posts.latest
+    @posts = @group.posts.latest.paginate(:page => params[:page], :per_page => 5)
+    logger.debug("---- #{@group.posts.latest.inspect}")
   end
 
   def edit
